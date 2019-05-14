@@ -36,15 +36,28 @@
                     </md-list>
                 </md-list-item>
 
-                <md-list-item>
+                <md-list-item md-expand v-for="project in projects">
                     <md-icon>shopping_basket</md-icon>
-                    <span class="md-list-item-text">Shop</span>
+                    <span class="md-list-item-text">{{ project.name }}</span>
+
+                    <md-list slot="md-expand">
+                        <md-list-item class="md-inset" v-for="meeting in project.meetings" v-bind:key="meeting.id">{{
+                            meeting.topic}} ({{meeting.dateTime}})
+                        </md-list-item>
+                    </md-list>
+                </md-list-item>
+
+                <md-list-item>
+                    <md-icon>chat_bubble_outline</md-icon>
+                    <span class="md-list-item-text">Leer</span>
                 </md-list-item>
             </md-list>
         </div>
         <div class="control">
             <md-switch v-model="expandSingle">Expand Only One</md-switch>
             <md-checkbox v-model="expandNews">Expand News</md-checkbox>
+            <md-button class="md-raised md-primary" v-on:click.native="fillTable()">Fill Table</md-button>
+            <md-button class="md-raised md-primary" v-on:click.native="clearTable()">Clear Table</md-button>
         </div>
     </div>
 </template>
@@ -53,17 +66,55 @@
     export default {
         name: 'MeetingProject',
 
-        data () {
+        data: function () {
             return {
                 expandNews: false,
-                expandSingle: false
+                expandSingle: false,
+                contacts: [],
+                projects: [],
             }
+        },
+        methods: {
+            fillTable: function () {
+                // this.contacts.push({firstName: 'Eron', lastName: 'Castro', email: 'eroncastro@test.com'});
+                // this.contacts.push({firstName: 'Eron2', lastName: 'Castro', email: 'eroncastro2@test.com'});
+                // this.contacts.push({firstName: 'Eron3', lastName: 'Castro', email: 'eroncastro3@test.com'});
+                // console.log(contacts);
+                this.projects.push(
+                    {
+                        id: "project123",
+                        name: "reduce meetings",
+                        manager: "Bob Builder",
+                        meetings: [
+                            {
+                                id: "12345",
+                                dateTime: "2019-05-14 17:15 UTC",
+                                durationMin: 120,
+                                topic: "no more meetings"
+                            },
+                            {
+                                id: "12345",
+                                dateTime: "2019-05-21 17:15 UTC",
+                                durationMin: 120,
+                                topic: "no more meetings"
+                            }
+                        ]
+                    }
+                );
+            },
+            clearTable: function () {
+                // this.contacts.splice(0, this.contacts.length);
+                this.projects.splice(0, this.projects.length);
+            }
+        },
+        beforeMount() {
+            this.fillTable()
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    $list-width: 320px;
+    $list-width: 400px;
 
     .full-control {
         display: flex;
