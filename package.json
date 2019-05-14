@@ -1,0 +1,14 @@
+{
+  "name": "Sitzungsmanager",
+  "keywords": [
+    "vue-material",
+    "material-design",
+    "vue"
+  ],
+  "dependencies": {
+    "vue-material": "latest",
+    "vue": "latest",
+    "@vue/cli": "^3.7.0",
+    "@vue/cli-service": "^3.7.0"
+  }
+}
