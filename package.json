@@ -8,11 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue-material": "latest",
-    "vue": "latest",
     "@vue/cli": "^3.7.0",
-    "@vue/cli-service": "^3.7.0"
+    "@vue/cli-service": "^3.7.0",
+    "axios": "^0.18.0",
+    "core-js": "^2.6.5",
+    "vue": "latest",
+    "vue-material": "latest"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
